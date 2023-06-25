@@ -28,9 +28,7 @@
                     @foreach ($wishlists as $wishlist)
                     <tr>
                         <td class="hidden pb-4 md:table-cell">
-                            <a href="#">
-                                <img src="{{ asset('storage/'. $wishlist->image) }}" class="w-20 rounded" alt="Thumbnail">
-                            </a>
+                            <img width="100px" height="100px" src=" {{ asset('storage/'.$wishlist->image) }}" class="w-20 rounded" style="object-fit: cover">
                         </td>
                         <td>
                             <p class="mb-2 md:ml-4">{{ $wishlist->nama }}</p>

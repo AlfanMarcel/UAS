@@ -33,7 +33,7 @@
                         <td>{{ $check->bankasal }}</td>
                         <td>{{ $check->banktujuan  }}</td>
                         <td>
-                            <img src="{{ asset('/storage'.$check->image) }}" class="w-20 rounded" width="auto" height="100px">
+                            <img width="100px" height="100px" src=" {{ asset('storage/'.$check->image) }}" class="w-20 rounded" style="object-fit: cover">
                         </td>
                     </tr>
                     @endforeach

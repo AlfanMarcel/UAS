@@ -17,17 +17,17 @@
             <table class="table table-bordered" id="dataTable">
                 <thead>
                     <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Harga</th>
-                    <th>Pemilik</th>
-                    <th>Stok</th>
-                    <th>Harga Diskon</th>
-                    <th>Aksi</th>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Harga</th>
+                        <th>Pemilik</th>
+                        <th>Stok</th>
+                        <th>Harga Diskon</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
-            <tbody>
-                @foreach ($products as $product)
+                <tbody>
+                    @foreach ($products as $product)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $product->nama }}</td>
@@ -36,7 +36,7 @@
                             {{ $product->user->name }}
                         </td>
                         <td>{{ $product->stok }}</td>
-                        <td>{{ $product->diskon }}</td>
+                        <td>Rp {{ $product->diskon }}</td>
                         <td>
                             <a href="{{ route('product.edit', $product->id) }}" class="btn btn-sm btn-warning mb-1">Edit</a>
                             <a href="{{ route('product.show', $product->id) }}" class="btn btn-sm btn-info mb-1">Show</a>
@@ -44,17 +44,17 @@
                                 @csrf
                                 @method('DELETE')
                                 <input name="_method" type="hidden" value="DELETE">
-                                    <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Delete</button>
+                                <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Delete</button>
                                 {{-- <button type="submit" class="btn btn-sm btn-danger">Delete</button> --}}
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                    @endforeach
                     <br>
-            </tbody>
+                </tbody>
             </table>
         </div>
-</div>
-{{ $products->links() }}
+    </div>
+    {{ $products->links() }}
 </div>
 @endsection

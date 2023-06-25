@@ -59,7 +59,8 @@ class OrderDetailController extends Controller
             'orderdetail_id' => 'required',
             'nama' => 'required',
             'bankasal' => 'required',
-            'banktujuan' => 'required'
+            'banktujuan' => 'required',
+            'image' => 'required'
         ]);
 
         if ($request->file('image')) {

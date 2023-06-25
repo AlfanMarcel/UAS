@@ -129,13 +129,22 @@ class ProductController extends Controller
             'category_id' => 'required',
             'nama' => 'required',
             'harga' => 'required',
+            'supplier_id' => 'required',
             'description' => 'required',
             'telfon' => 'required',
             'stok' => 'required',
+            'diskon' => 'nullable',
             'image' => 'nullable',
         ];
 
         $validatedData = $request->validate($rules);
+        $diskon = ($request->diskon * 0.01) * $request->harga;
+
+        $validatedData['diskon'] = $request->harga - $diskon;
+
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('images', 'public');
+        }
 
         Product::where('id', $product->id)
             ->update($validatedData);

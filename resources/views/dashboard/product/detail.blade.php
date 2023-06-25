@@ -13,7 +13,7 @@
                 <div class="col-md-6">
                     <h1 class="display-5 fw-bolder">{{ $product->nama }}</h1>
                     <div class="fs-5 mb-5">
-                        <span>Rp {{ number_format($product->harga,2) }}</span>
+                        <span>Rp {{ number_format($product->diskon,2) }}</span>
                         <br>
                         <span>Stok {{ number_format($product->stok,2) }}</span>
                     </div>

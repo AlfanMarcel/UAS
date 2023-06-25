@@ -58,6 +58,15 @@
                     @enderror
                 </div>
                 <div class="form-group">
+                    <label for="diskon">Diskon</label>
+                    <input type="number" name="diskon" class="form-control @error('diskon') is-invalid @enderror" required>
+                    @error('diskon')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+                <div class="form-group">
                     <label for="stok">Stok</label>
                     <input type="text" name="stok" class="form-control @error('stok') is-invalid @enderror" value="{{ old( 'stok', $product->stok) }}" required>
                     @error('stok')
@@ -77,29 +86,29 @@
                 </div>
                 <div class="form-group">
                     <label for="description">Deskripsi Barang</label>
-                    <textarea class="form-control @error('description') is-invalid @enderror" name="description"" required>{{ $product->description }}</textarea>
+                    <textarea class="form-control @error('description') is-invalid @enderror" name="description" required>{{ $product->description }}</textarea>
                     @error('description')
                     <div class=" invalid-feedback">
-                    {{ $message }}
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
-                @enderror
+                <div class="form-group">
+                    <label for="KTP">Foto Barang</label>
+                    <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ $product->image }}">
+                    <img src="{{ asset('storage/'.$product->image) }}" height="150px" width="150px">
+                    @error('image')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+                <div class="form-group pull-right mt-2">
+                    <input type="submit" name="add" value="Update" class="btn btn-success">
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="KTP">Foto Barang</label>
-            <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ $product->image }}">
-            <img src="{{ asset('storage/'.$product->image) }}" height="150px" width="150px">
-            @error('image')
-            <div class="invalid-feedback">
-                {{ $message }}
-            </div>
-            @enderror
-        </div>
-        <div class="form-group pull-right mt-2">
-            <input type="submit" name="add" value="Update" class="btn btn-success">
-        </div>
-        </form>
     </div>
-</div>
 </div>
 
 @endsection

@@ -6,24 +6,26 @@ use App\Models\Category;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use App\Models\Product;
 
 class SupplierController extends Controller
 {
-        public function __construct()
-        {
+    public function __construct()
+    {
         $this->middleware('auth');
-        }
+    }
 
     public function index()
     {
         $suppliers = Supplier::paginate(10);
 
-        return view('dashboard.supplier.index',[
+        return view('dashboard.supplier.index', [
             'suppliers' => $suppliers
         ]);
     }
 
-    public function create(){
+    public function create()
+    {
         return view('dashboard.supplier.create');
     }
 
@@ -36,24 +38,25 @@ class SupplierController extends Controller
         $suppliers = new Supplier;
 
         $suppliers->nama = $request->get('nama');
-        $suppliers->save(); 
+        $suppliers->save();
 
-        return redirect()->route('supplier.index')->with('success','supplier Ditambahkan');
+        return redirect()->route('supplier.index')->with('success', 'supplier Ditambahkan');
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $suppliers = Supplier::where('id', $id)->first();
 
         Supplier::find($suppliers->id)->delete();
 
-        return redirect()->route('supplier.index')->with('success','Category berhasil dihapus');
+        return redirect()->route('supplier.index')->with('success', 'Category berhasil dihapus');
     }
 
     public function show($id)
     {
         $product = Product::where('id', $id)->first();
 
-        return view('dashboard.product.detail',[
+        return view('dashboard.product.detail', [
             'product' => $product
         ]);
     }
@@ -67,7 +70,7 @@ class SupplierController extends Controller
     public function edit($id)
     {
         $supplier = Supplier::where('id', $id)->first();
-        return view('dashboard.supplier.edit',[
+        return view('dashboard.supplier.edit', [
             'supplier' => $supplier,
         ]);
     }
@@ -81,12 +84,9 @@ class SupplierController extends Controller
         $validatedData = $request->validate($rules);
 
         Supplier::where('id', $supplier->id)
-        ->update($validatedData);
+            ->update($validatedData);
 
         return redirect()->route('supplier.index')
-        ->with('success', 'Data Berhasil diupdate');
+            ->with('success', 'Data Berhasil diupdate');
     }
-
-
-
 }
